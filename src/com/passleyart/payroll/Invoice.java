@@ -3,12 +3,12 @@ package com.passleyart.payroll;
 public class Invoice implements Payable{
     private String partNumber;
     private String partDescription;
-    private int quality;
+    private int quantity;
     private double pricePerItem;
 
     @Override
     public double getPaymentAmount() {
-        return 0;
+        return (pricePerItem*quantity);
     }
 
     public String getPartNumber() {
@@ -27,12 +27,12 @@ public class Invoice implements Payable{
         this.partDescription = partDescription;
     }
 
-    public int getQuality() {
-        return quality;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setQuality(int quality) {
-        this.quality = quality;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public double getPricePerItem() {
@@ -41,5 +41,13 @@ public class Invoice implements Payable{
 
     public void setPricePerItem(double pricePerItem) {
         this.pricePerItem = pricePerItem;
+    }
+
+    public void display() {
+        System.out.println("Parts #:" + getPartNumber() + "\n" +
+                "Parts Description: " + getPartDescription() + "\n" +
+                "Quantity: " + getQuantity() + "\n" +
+                "Price per Item: " + getPricePerItem() + "\n" +
+                "Payment Amount: " + getPaymentAmount() + "\n");
     }
 }
