@@ -5,10 +5,20 @@ public class Invoice implements Payable{
     private String partDescription;
     private int quantity;
     private double pricePerItem;
+    final double gct=0.15;
+
+    public double calGct()
+    {
+        return (pricePerItem*quantity*gct);
+    }
+
+
+    public Invoice() {
+    }
 
     @Override
     public double getPaymentAmount() {
-        return (pricePerItem*quantity);
+        return (pricePerItem*quantity+calGct());
     }
 
     public String getPartNumber() {
@@ -48,6 +58,9 @@ public class Invoice implements Payable{
                 "Parts Description: " + getPartDescription() + "\n" +
                 "Quantity: " + getQuantity() + "\n" +
                 "Price per Item: " + getPricePerItem() + "\n" +
-                "Payment Amount: " + getPaymentAmount() + "\n");
+                "GCT: " + calGct() + "\n" +
+                "Payment Amount GCT Included: " + getPaymentAmount() + "\n");
     }
+
+
 }

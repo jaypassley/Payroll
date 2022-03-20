@@ -11,25 +11,25 @@ public class Main {
         Invoice INV = new Invoice();
         SalariedEmployee SE = new SalariedEmployee();
 
-        //Enter input for Invoice
-        System.out.println("\nEnter Payroll Info For an Invoice\n******************************************\n");
-
-        System.out.println("Enter Parts Number");
-        INV.setPartNumber(sc.next());
-
-        System.out.println("Enter Parts Description");
-        INV.setPartDescription(sc.next());
-
-        System.out.println("Enter Quantity");
-        INV.setQuantity(sc.nextInt());
-
-        System.out.println("Enter Price of Item");
-        INV.setPricePerItem(sc.nextDouble());
-
-
-        //Display Manger info
-        System.out.println("\n--Invoice Data--\n");
-        INV.display();
+//        //Enter input for Invoice
+//        System.out.println("\nEnter Payroll Info For an Invoice\n******************************************\n");
+//
+//        System.out.println("Enter Parts Number");
+//        INV.setPartNumber(sc.next());
+//
+//        System.out.println("Enter Parts Description");
+//        INV.setPartDescription(sc.next());
+//
+//        System.out.println("Enter Quantity");
+//        INV.setQuantity(sc.nextInt());
+//
+//        System.out.println("Enter Price of Item");
+//        INV.setPricePerItem(sc.nextDouble());
+//
+//
+//        //Display Invoice info
+//        System.out.println("\n--Invoice Data--\n");
+//        INV.display();
 
         //************************************************
         //************************************************
