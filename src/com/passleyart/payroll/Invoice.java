@@ -2,6 +2,8 @@ package com.passleyart.payroll;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Invoice implements Payable{
     private String partNumber;
@@ -14,6 +16,10 @@ public class Invoice implements Payable{
     {
         return (pricePerItem*quantity*gct);
     }
+
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
+    LocalDate now = LocalDate.now();
+
 
 
     public Invoice() {
@@ -33,7 +39,7 @@ public class Invoice implements Payable{
                 "Parts Description: " + getPartDescription() + "\n" +
                 "Quantity: " + getQuantity() + "\n" +
                 "Price per Item: " + getPricePerItem() + "\n" +
-                "GCT: " + calGct() + "\n" +
+                "GCT: " + calGct() + "\n" + "Date: " + (dtf.format(now)) + "\n" +
                 "Payment Amount GCT Included: " + getPaymentAmount() + "\n");
             myWriter.close();
             System.out.println("Successfully wrote to the file.");

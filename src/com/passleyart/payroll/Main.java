@@ -10,12 +10,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
-        LocalDate now = LocalDate.now();
-        System.out.println(dtf.format(now));
+//        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
+//        LocalDate now = LocalDate.now();
+//        System.out.println(dtf.format(now));
 
-        LocalDate myObj = LocalDate.now(); // Create a date object
-        System.out.println(myObj); // Display the current date
 
         Scanner sc = new Scanner(System.in);
 
