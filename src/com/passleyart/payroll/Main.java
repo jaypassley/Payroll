@@ -1,15 +1,27 @@
 package com.passleyart.payroll;
 
+
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
 
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
+        LocalDate now = LocalDate.now();
+        System.out.println(dtf.format(now));
+
+        LocalDate myObj = LocalDate.now(); // Create a date object
+        System.out.println(myObj); // Display the current date
+
         Scanner sc = new Scanner(System.in);
 
         Invoice INV = new Invoice();
         SalariedEmployee SE = new SalariedEmployee();
+
 
         //Enter input for Invoice
         System.out.println("\nEnter Payroll Info For an Invoice\n******************************************\n");
@@ -26,6 +38,7 @@ public class Main {
         System.out.println("Enter Price of Item");
         INV.setPricePerItem(sc.nextDouble());
 
+        INV.writeToFile();
 
         //Display Invoice info
         System.out.println("\n--Invoice Data--\n");
@@ -54,5 +67,5 @@ public class Main {
         //Display Salaried Employee info
         System.out.println("\n--Salaried Employee Info--\n");
         SE.display();
-}
+    }
 }

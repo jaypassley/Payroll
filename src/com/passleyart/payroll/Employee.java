@@ -12,6 +12,11 @@ public class Employee implements Payable
         return 0;
     }
 
+    @Override
+    public void writeToFile() {
+
+    }
+
     public String getFirstName() {
         return firstName;
     }

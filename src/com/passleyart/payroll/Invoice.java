@@ -1,5 +1,8 @@
 package com.passleyart.payroll;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Invoice implements Payable{
     private String partNumber;
     private String partDescription;
@@ -19,6 +22,27 @@ public class Invoice implements Payable{
     @Override
     public double getPaymentAmount() {
         return (pricePerItem*quantity+calGct());
+    }
+
+    @Override
+    public void writeToFile() {
+        try {
+            FileWriter myWriter = new FileWriter("paystub.txt");
+            myWriter.write("\nEnter Payroll Info For an Invoice\n*************************************\n" +
+                "Parts #:" + getPartNumber() + "\n" +
+                "Parts Description: " + getPartDescription() + "\n" +
+                "Quantity: " + getQuantity() + "\n" +
+                "Price per Item: " + getPricePerItem() + "\n" +
+                "GCT: " + calGct() + "\n" +
+                "Payment Amount GCT Included: " + getPaymentAmount() + "\n");
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+            }
+        catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+            }
+
     }
 
     public String getPartNumber() {
