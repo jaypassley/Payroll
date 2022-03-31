@@ -1,11 +1,15 @@
 package com.passleyart.payroll;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
+
 public class SalariedEmployee extends Employee{
 
     private double weeklySalary;
-    final double NHT = 0.03;
-    final double EduTax = 0.02;
-    final double NIS =0.02;
+
+
+
 
     public double CalNTH()
     {
@@ -33,7 +37,29 @@ public class SalariedEmployee extends Employee{
         return (getWeeklySalary()-Deductions());
     }
 
+    public void writeToFile() {
+        try {
+            FileWriter myWriter = new FileWriter("paystub.txt");
+            myWriter.write("\nCompany: Passley Art Limited\n" +
+                    "Employee's Name: " + getFirstName() + " " + getLastName() + "\n" +
+                    "Social Security #: " + getSocialSecurityNumber() + "\n" +
+                    "Payment Date: " + (dtf.format(now)) +  "\n\n" +
+                    "Basic Pay:\t" + getWeeklySalary() + "\n" +
+                    "Deductions-\n" +
+                    "\tNHT: " + CalNTH() + "\n" +
+                    "\tNIS: " + CalNIS() + "\n" +
+                    "\tEducation Tax: " + CalEduTax() + "\n" +
+                    "Total Deductions: " + Deductions() + "\n\n" +
+                    "Net Salary: " + getPaymentAmount() + "\n");
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        }
+        catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
 
+    }
 
     public double getWeeklySalary() {
         return weeklySalary;
@@ -44,14 +70,16 @@ public class SalariedEmployee extends Employee{
     }
 
     public void display() {
-        System.out.println("First Name :" + getFirstName() + "\n" +
-                "Last Name: " + getLastName() + "\n" +
+        System.out.println("\nCompany: Passley Art Limited\n" +
+                "Employee's Name: " + getFirstName() + " " + getLastName() + "\n" +
                 "Social Security #: " + getSocialSecurityNumber() + "\n" +
-                "Gross Salary: " + getWeeklySalary() + "\n" +
-                "NHT: " + CalNTH() + "\n" +
-                "NIS: " + CalNIS() + "\n" +
-                "Education Tax: " + CalEduTax() + "\n" +
-                "Total Deductions: " + Deductions() + "\n" +
+                "Payment Date: " + (dtf.format(now)) +  "\n\n" +
+                "Basic Pay:\t" + getWeeklySalary() + "\n" +
+                "Deductions-\n" +
+                "\tNHT: " + CalNTH() + "\n" +
+                "\tNIS: " + CalNIS() + "\n" +
+                "\tEducation Tax: " + CalEduTax() + "\n" +
+                "Total Deductions: " + Deductions() + "\n\n" +
                 "Net Salary: " + getPaymentAmount() + "\n");
     }
 }

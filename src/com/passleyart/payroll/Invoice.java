@@ -16,6 +16,10 @@ public class Invoice implements Payable{
     {
         return (pricePerItem*quantity*gct);
     }
+    public double calSubt()
+    {
+        return (pricePerItem*quantity);
+    }
 
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
     LocalDate now = LocalDate.now();
@@ -27,20 +31,24 @@ public class Invoice implements Payable{
 
     @Override
     public double getPaymentAmount() {
-        return (pricePerItem*quantity+calGct());
+        return (calSubt()+calGct());
     }
 
     @Override
     public void writeToFile() {
         try {
-            FileWriter myWriter = new FileWriter("paystub.txt");
-            myWriter.write("\nEnter Payroll Info For an Invoice\n*************************************\n" +
-                "Parts #:" + getPartNumber() + "\n" +
-                "Parts Description: " + getPartDescription() + "\n" +
-                "Quantity: " + getQuantity() + "\n" +
-                "Price per Item: " + getPricePerItem() + "\n" +
-                "GCT: " + calGct() + "\n" + "Date: " + (dtf.format(now)) + "\n" +
-                "Payment Amount GCT Included: " + getPaymentAmount() + "\n");
+            FileWriter myWriter = new FileWriter("invoice.txt");
+            myWriter.write("\n\t\t  Passley Art Limited\n\t\t************************\n" +
+                    "\t\t  360 Business District \n\t\t  Kingston, Jamaica\n" +
+                    "\t\t  passleyart@yahoo.com \n\t\t   (876) CALL-PAL\n\t\t\t" +
+                    (dtf.format(now)) + "\n\n" +
+                "\tParts #:" + getPartNumber() + "\n" +
+                "\tParts Description: " + getPartDescription() + "\n" +
+                "\tQuantity: " + getQuantity() + "\n" +
+                "\tPrice per Item: " + getPricePerItem() + "\n\n" +
+                    "\t\t\t\t\tSubtotal: " + calSubt() + "\n" +
+                "\t\t\t\t\tGCT: " + calGct() + "\n\n" +
+                "\t\t\t\t\tTotal: " + getPaymentAmount() + "\n");
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
             }
@@ -84,12 +92,17 @@ public class Invoice implements Payable{
     }
 
     public void display() {
-        System.out.println("Parts #:" + getPartNumber() + "\n" +
-                "Parts Description: " + getPartDescription() + "\n" +
-                "Quantity: " + getQuantity() + "\n" +
-                "Price per Item: " + getPricePerItem() + "\n" +
-                "GCT: " + calGct() + "\n" +
-                "Payment Amount GCT Included: " + getPaymentAmount() + "\n");
+        System.out.println("\n\t\t  Passley Art Limited\n\t\t************************\n" +
+                "\t\t  360 Business District \n\t\t  Kingston, Jamaica\n" +
+                "\t\t  passleyart@yahoo.com \n\t\t   (876) CALL-PAL\n\t\t\t" +
+                (dtf.format(now)) + "\n\n" +
+                "\tParts #:" + getPartNumber() + "\n" +
+                "\tParts Description: " + getPartDescription() + "\n" +
+                "\tQuantity: " + getQuantity() + "\n" +
+                "\tPrice per Item: " + getPricePerItem() + "\n\n" +
+                "\t\t\t\t\tSubtotal: " + calSubt() + "\n" +
+                "\t\t\t\t\tGCT: " + calGct() + "\n\n" +
+                "\t\t\t\t\tTotal: " + getPaymentAmount() + "\n");
     }
 
 

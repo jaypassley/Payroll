@@ -1,11 +1,20 @@
 package com.passleyart.payroll;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Employee implements Payable
 {
 
     private String firstName;
     private String lastName;
     protected String socialSecurityNumber;
+    final double NHT = 0.03;
+    final double EduTax = 0.02;
+    final double NIS =0.02;
+
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
+    LocalDate now = LocalDate.now();
 
     @Override
     public double getPaymentAmount() {
